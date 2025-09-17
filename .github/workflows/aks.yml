@@ -7,15 +7,20 @@ jobs:
 
     steps:
       - name: chekout
-        use: action/checkoutsv@2
+        uses: action/checkoutsv@2
       - name: install dependencies
         run: npm install
-        working_directory: src/store-front
+        working-directory: src/store-front
       - name: build the packages
         run: npm run build
-        working_directory: src/dtore-front
+        working-directory: src/store-front
+      - name: 📦 Zip dist files
+        id: zip
+        uses: Roslovets-Inc/zip-npm-files@v1
+        with:
+          files: dist/src/store-front
       - name: upload articats
         uses: actions/upload-artifact@v4
         with:
           name: my-artifact
-          path: dist
+          path: dist.zip
