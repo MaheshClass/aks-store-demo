@@ -7,7 +7,7 @@ jobs:
 
     steps:
       - name: chekout
-        uses: actions/checkoutv@2
+        uses: actions/checkout@v2
       - name: install dependencies
         run: npm install
         working-directory: src/store-front
