@@ -1,0 +1,21 @@
+on:
+ workflow_dispatch:
+
+jobs:
+  aks-store:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: chekout
+        use: action/checkoutsv@2
+      - name: install dependencies
+        run: npm install
+        working_directory: src/store-front
+      - name: build the packages
+        run: npm run build
+        working_directory: src/dtore-front
+      - name: upload articats
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-artifact
+          path: dist
